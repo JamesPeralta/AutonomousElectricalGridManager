@@ -1,6 +1,4 @@
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,7 +22,7 @@ public class ProcessFiles {
 
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("/home/satyaki/Projects/hackathon-data-processor/energy/" + filename));
+            reader = new BufferedReader(new FileReader("/home/satyaki/Projects/Hackathon2019/hackathon-data-processor/energy/" + filename));
             String line = reader.readLine();
             line = reader.readLine();
             while (line != null && line.length() > 0) {
@@ -53,7 +51,7 @@ public class ProcessFiles {
 
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("/home/satyaki/Projects/hackathon-data-processor/temp/" + filename));
+            reader = new BufferedReader(new FileReader("/home/satyaki/Projects/Hackathon2019/hackathon-data-processor/temp/" + filename));
             String line = reader.readLine();
             while (line != null && line.length() > 0) {
                 TempModel model = TempModel.createTempModel(line);
@@ -71,7 +69,7 @@ public class ProcessFiles {
 
     public void generateCombined() {
         try {
-            File file = new File("/home/satyaki/Projects/hackathon-data-processor/out/" + this.year + "-combined.csv");
+            File file = new File("/home/satyaki/Projects/Hackathon2019/hackathon-data-processor/out/" + this.year + "-combined.csv");
             PrintWriter printWriter = new PrintWriter(file);
 
             int wroteLines = 0;
@@ -80,7 +78,7 @@ public class ProcessFiles {
                 TempModel temp = this.tempMap.get(key);
 
                 if (temp != null) {
-                    printWriter.println(usage.date + "," + usage.hour + "," + temp.temp + "," + usage.usage);
+                    printWriter.println(usage.date + "," + temp.month + "," + usage.hour + "," + temp.temp + "," + usage.usage);
                     wroteLines++;
                 }
             }
@@ -96,34 +94,18 @@ public class ProcessFiles {
         System.out.println("Usage data before: " + this.usageMap.size());
         for (String key: this.energyMap.keySet()) {
             ArrayList<ResEnergyModel> modelList = this.energyMap.get(key);
-            HashMap<Integer, ArrayList<ResEnergyModel>> sortedModelMap = new HashMap<>();
-
-            for (int i = 0; i < modelList.size(); i++) {
-                ResEnergyModel model = modelList.get(i);
-
-                ArrayList<ResEnergyModel> sortedModelList = sortedModelMap.get(model.loc);
-                if (sortedModelList == null) {
-                    sortedModelList = new ArrayList<>();
-                }
-                sortedModelList.add(model);
-                sortedModelMap.put(model.loc, sortedModelList);
-            }
 
             Double usage = 0.0;
-            for (Integer loc: sortedModelMap.keySet()) {
-                ArrayList<ResEnergyModel> locList = sortedModelMap.get(loc);
-                Double total = 0.0;
-                for (int x = 0; x < locList.size(); x++) {
-                    total += locList.get(x).usage;
+            for (int i = 0; i < modelList.size(); i++) {
+                ResEnergyModel model = modelList.get(i);
+                if (model != null) {
+                    usage += model.usage;
                 }
-
-                Double truncatedDouble = BigDecimal.valueOf(total/locList.size())
-                .setScale(6, RoundingMode.HALF_UP)
-                .doubleValue();
-                usage += truncatedDouble;
             }
 
             ResEnergyModel firstModel = modelList.get(0);
+            usage = usage/modelList.size();
+
             if (firstModel != null) {
                 UsageModel usageModel = new UsageModel(firstModel.date, usage, firstModel.hour, firstModel.dateString());
                 usageMap.put(usageModel.fullDate, usageModel);

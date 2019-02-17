@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "Hackathon",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js",
-    "watch": "nodemon ./src/app.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JamesPeralta/Hackathon2019.git"
@@ -19,10 +14,17 @@
   },
   "homepage": "https://github.com/JamesPeralta/Hackathon2019#readme",
   "dependencies": {
-    "@tensorflow/tfjs": "^0.15.2",
-    "@tensorflow/tfjs-node": "^0.3.0",
+    "@google-cloud/bigquery": "2.0.6",
+    "@tensorflow/tfjs-node": "0.3.0",
     "cors": "2.8.5",
-    "express": "^4.16.4",
-    "nodemon": "1.18.9"
+    "express": "4.16.4",
+    "moment": "2.24.0",
+    "moment-timezone": "0.5.23",
+    "nodemon": "1.18.9",
+    "body-parser": "1.18.3"
+  },
+  "scripts": {
+    "start": "node ./src/app.js",
+    "watch": "nodemon ./src/app.js"
   }
 }

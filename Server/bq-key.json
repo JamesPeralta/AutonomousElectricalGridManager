@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "calgaryhacks",
+  "private_key_id": "464d9212d3f481cf5637a1832adc7ad67d906c85",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCSmBi4wzuCp8ad\n9Nzg9FoK5Zz64BhUi/P15yajFUTgeHZrs4sV3qepjqcltrcwGtpQNJV3F8IGHFXX\nm24PAElr+FA8Ikd/nkmtZVZ4FjdGViou4/31WTGMZxarp9++W3Q8fNPHQlQZdCDp\nfTdettVUCGHZtoyqU+Ol4IyVuEGj27l+sJUIbNv67Uijlgs+shjxCQd+6u1CehT0\nTjC5IYmSmtAhcZJAJQuzjSVHETFFS6dyoS2odLwpXAWdT5AKYGtiR+EtWO9LVPF3\nimzaYzAOj+r+mEGS8tkfnX0hdCvIrohf8gwnghbDW3fjiTgg0McUcOnKo/8SRldH\nu8n+lnSlAgMBAAECggEAD7wgpzBZgmg00v6V+NVxlsrXozwLkIOnL4VcqdOeHYQA\nngXbD4FjOLl1qoAmwJSZS1OhmXNk4ZgIBMkLsrOCrgKsxg+d4g5g9Soz8lbcHwIf\nrAHP4BZvUZU9Iza1Nu8FFnsFllVBxqum3rkQiOuSEV+G9UH5bkzr2gG0xVtOPGKv\nLwxF/6IcNccHUlOHBa8tmUttknNJ65Yul99yE3L+EJRKSvIo8U6DwOMvPTrb/Grk\ncdupqtrpzHIaQDnYJIVwfM8RSGlof5trDI/RvHdc9n2bf1FBYVSMFs7iOkDT9LaQ\nBFzmPDne6vpEfKj9U151KRBdoD8k35ISLGvlFbCvsQKBgQDLWR9zja5UhNvZzGp0\nEc3sDVuKTaCi9XnVJe4JiydRU1mjoLA1cd3wcvJGnnbCmiRf1jzdwAGU6zPD2Srq\nWXOuM7e9XowSvL/9/IJ+Gp9mvAxr7C2erldX/WXKr3LlKh7TdUyVvaFlTcb5Fu/8\nkyrrFqIyMuzLnOQnnI6W39CavQKBgQC4jQygJTy0xf6dWtefEJIseMsP+//DlPZq\ntd03XBVsGmmzePgZqeMioBTxPWgmF7vM/zXpTMehwwc9/Nap74jJsRTJHpnhKPXE\nOemEJXV0f2s90t3mpuOeRVGWtafjqvhqn/kNMxXpTvYZocQVtfEZT7BN/zkZHv2k\n7Ja8iJdUCQKBgQCs21/O/Js6oY25wPilHhVsGZa9JGvu2rjsJcgJOM79ZNsIKype\n5CKDqVKmEUJm/lz5UsZ+wh8WFjH0xAClIdEiPjhss5hivSx/nUzYIY1q6WOtwiCt\niQoac/85opcKkxmNK2MkzwQJd2oyh/sNO5T6Lk1GWt/L3dxch8r2Gd/cCQKBgQCe\nLS6UGDZmzojDf7ftert+aG3LHncBwCxQG94l88PcqurLy7QB8w1dgQ1SEwqwE4mA\nU4F2m7tDFzCe3ZVzg32fOSqSkqrbREsZS3WtMJnyJr/Y9mIArivLXKhoXvwt8z0F\nzmUc/hsao/Xk1DSHUzD5O8blowniUSCe+bTclMn3WQKBgAixq839B4OHJMHiTNio\nPYVOyXXPqRPRX59MMpzp5BGOpXvX8PQ2uEw7IOIFzQcsXX+ohHi4NLPcrWIu83CW\nmfAs5Q04KC9EL8uGYdrxgTOHBjDTizvz3jIv1mLA0V7PsRxVINHxLcYPrc2XwXZY\nL44TEe71P0GWw+tyksgSY4eI\n-----END PRIVATE KEY-----\n",
+  "client_email": "bigquery@calgaryhacks.iam.gserviceaccount.com",
+  "client_id": "103226206498945774094",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigquery%40calgaryhacks.iam.gserviceaccount.com"
+}
