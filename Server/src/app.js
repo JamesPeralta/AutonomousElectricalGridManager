@@ -32,41 +32,60 @@ app.use('/predict', wrap( async (req, res, next) => {
     console.debug('Predict Body', start.toString(), end.toString(), interval);
 
     const now = Date.now();
-    const data = [];
+    let dateString = '';
+
     while (start.valueOf() <= end.valueOf()) {
-        const monthString = start.format('MMM').toLowerCase();
-        const dateString = start.format('YYYY-MM-DD');
-        const hourNum = start.format('H');
-        const monthNum = start.format('M');
-
-        const pred = await tf.loadLayersModel(`${STORAGE_PREFIX}${monthString}${STORAGE_POSTFIX}`);
-        const query = `SELECT temp FROM \`calgaryhacks.temps.temps\` WHERE date = \'${dateString}\' AND hour = ${hourNum} AND month = ${monthNum}`;
-        console.debug('Predict Query:', query);
-
-        const options = {
-            query: query,
-            location: 'US',
-        };
-
-        const [job] = await bigquery.createQueryJob(options);
-        const [rows] = await job.getQueryResults();
-
-        if (rows.length > 0) {
-            const temp = rows[0].temp;
-            const tensor = tf.tensor([[Number(hourNum), temp]]);
-            const result = await pred.predict(tensor).data();
-
-            if (result.length > 0) {
-                data.push({
-                    unix: start.valueOf(),
-                    label: start.format('MMM D, YYYY ha'),
-                    temp,
-                    value: result[0],
-                });
-            }
+        if (dateString.length === 0) {
+            dateString = `date like \'%${start.format('YYYY-MM-DD')}%\'`;
+        } else {
+            dateString = `${dateString} OR date like \'%${start.format('YYYY-MM-DD')}%\'`;
         }
-        start = moment.tz(start, 'America/Edmonton').add(1, 'hour');
+
+        start = moment.tz(start, 'America/Edmonton').add(1, 'day');
     }
+
+    const query = `SELECT * FROM \`calgaryhacks.temps.temps\` WHERE ${dateString}`;
+    const options = {
+        query: query,
+        location: 'US',
+    };
+    console.debug('Predict Query:', query);
+
+    const [job] = await bigquery.createQueryJob(options);
+    const [rows] = await job.getQueryResults();
+
+    const data = [];
+    let monthString = '';
+    let pred;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const newMonth = row.date.split('-')[1];
+        const formattedMonth = moment.tz(newMonth, 'M', 'America/Edmonton').format('MMM').toLowerCase();
+
+        if ((monthString.length === 0 || newMonth !== monthString) && newMonth.length > 0) {
+            monthString = newMonth;
+            pred = await tf.loadLayersModel(`${STORAGE_PREFIX}${formattedMonth}${STORAGE_POSTFIX}`);
+        }
+
+        const tensor = tf.tensor([[Number(row.hour), row.temp]]);
+        const result = await pred.predict(tensor).data();
+
+        if (result.length > 0) {
+            const time = moment.tz(row.date, 'YYYY-MM-DD', 'America/Edmonton');
+            time.add(Number(row.hour), 'hour');
+
+            data.push({
+                unix: time.valueOf(),
+                label: time.format('MMM D, YYYY ha'),
+                temp: row.temp,
+                predict: result[0],
+            });
+        }
+    }
+
+    data.sort((a, b) => {
+        return a.unix - b.unix;
+    });
 
     console.debug('Predict time taken: ', (Date.now() - now)/1000, 'seconds', data.length);
     return res.status(200).send(data);
@@ -122,15 +141,21 @@ app.use('/historic', wrap( async (req, res, next) => {
         const result = await pred.predict(tensor).data();
 
         if (result.length > 0) {
+            const time = moment.tz(row.date, 'YYYY-MM-DD HH:mm', 'America/Edmonton');
+
             data.push({
-                unix: start.valueOf(),
-                label: start.format('MMM D, YYYY ha'),
+                unix: time.valueOf(),
+                label: time.format('MMM D, YYYY ha'),
                 temp: row.temp,
                 predict: result[0],
                 actual: row.usage,
             });
         }
     }
+
+    data.sort((a, b) => {
+        return a.unix - b.unix;
+    });
 
     console.debug('Historic time taken: ', (Date.now() - now)/1000, 'seconds', data.length);
     return res.status(200).send(data);
