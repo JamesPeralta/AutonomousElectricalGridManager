@@ -1,1 +1,18 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-form-field-appearance-legacy .mat-form-field-prefix .mat-datepicker-toggle-default-icon,
+.mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+  color: orange;
+}
+
+.mat-select-arrow,
+.mat-select-disabled .mat-select-value,
+.mat-select-trigger {
+  color:orange;
+}
+
+body {
+  margin-left: -6px;
+  margin-right: -6px;
+  background-color: black;
+}

@@ -1,0 +1,28 @@
+<body>
+  <section class="intro-section fix">
+    <div class="intro-bg bg-cms"></div>
+    <div class="intro-inner">
+      <div class="intro-content">
+        <mat-form-field class="formFieldMargin">
+          <input matInput [formControl]="selectedDate" [matDatepicker]="startPicker" [min]="minDate" [max]="maxDate" placeholder="Choose start date" (dateChange)="onChange()">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Interval"  [(value)]="selectedInterval" (selectionChange)="onChange()">
+            <mat-option *ngFor="let interval of intervals" [value]="interval">
+              {{interval}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+  <section id="trend" *ngIf="showTrends">
+    <fusioncharts
+      [chartConfig]=chartConfig
+      [dataSource]=dataSource >
+    </fusioncharts>
+  </section>
+</body>
