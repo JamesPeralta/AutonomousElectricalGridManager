@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.chartConfig = {
       width: '100%',
       height: '100%',
-      type: 'line',
+      type: 'msline',
       dataFormat: 'json',
     };
   }
@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   onChange() {
     const date = moment(this.selectedDate.value).format( 'YYYY-MM-DD');
+    // @ts-ignore
     const range = moment(date).add(1 , this.selectedInterval.toLowerCase()).format('YYYY');
     if (this.selectedInterval && this.selectedDate.value) {
       const reqType = range > 2016 ? 'predict' : 'historic';
@@ -80,14 +81,10 @@ export class HomeComponent implements OnInit {
         };
 
         this.dataset.push(this.predictedDataSet);
-        this.dataset.push(this.actualDataSet);
+        if (this.actualDataSet) {
+          this.dataset.push(this.actualDataSet);
+        }
 
-        // this.graphData = res.map((el) => {
-        //   return {
-        //     'label': el.label,
-        //     'value': el.value,
-        //   };
-        // });
         this.drawChart();
         this.showTrends = true;
         setTimeout(() => {
@@ -108,9 +105,9 @@ export class HomeComponent implements OnInit {
         'setadaptiveymin': '1',
         'theme': 'candy'
       },
-      'categories': {
+      'categories': [{
         'category': this.category
-      },
+      }],
       'dataset': this.dataset,
     };
     console.log(this.dataSource);
