@@ -4,6 +4,7 @@
 # User-specific stuff
 .idea/*
 energy/*.csv
+temp/*.csv
 *.iml
 
 # Sensitive or high-churn files
