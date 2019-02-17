@@ -1,0 +1,27 @@
+{
+  "name": "calgaryhacks",
+  "version": "1.0.0",
+  "description": "Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "watch": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesPeralta/Hackathon2019.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesPeralta/Hackathon2019/issues"
+  },
+  "homepage": "https://github.com/JamesPeralta/Hackathon2019#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.15.2",
+    "express": "^4.16.4",
+    "nodemon": "1.18.9",
+    "cors": "2.8.5"
+  }
+}
