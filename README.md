@@ -1,4 +1,5 @@
-#### Team Members:
+# Autonomous Electrical Grid Manager
+Team Members:
 * Satyaki Ghosh
 * Nathaniel Habtegergesa
 * Sadat Islam
