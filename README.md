@@ -1,5 +1,6 @@
 # Autonomous Electrical Grid Manager
 This project was created during the Calgary Hacks 2019 competition. We had 24 hours to create this project from scratch and present it to the judges. This project landed us in the top 5 among 45 teams :)
+
 Team Members:
 * Satyaki Ghosh
 * Nathaniel Habtegergesa
