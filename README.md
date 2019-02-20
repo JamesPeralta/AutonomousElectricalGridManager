@@ -21,4 +21,4 @@ We built this by first researching which data we would need in order to solve th
 Our weak computing power of our laptops was causing the training time of our NeuralNetworks to take up most of our time.
 
 ## What's next for Autonomous Electrical Grid Manager
-With more time we will be able to leverage more data and training time to create an even stronger predictive model.## Hackathon 2019
+With more time we will be able to leverage more data and training time to create an even stronger predictive model.
