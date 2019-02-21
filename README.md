@@ -9,7 +9,7 @@ Team Members:
 * Artin Rezaee
 
 ## Problem:
-Throughout the day, Energy consumption in a city varies. For example 3AM energy demands are very different then 6PM energy demands.Variables for dictating the energy usage for a given time could be the time of day, temperature (if it’s colder everyone will be blasting heaters), holiday (more people will be home), time of the year (summer, fall, winter) etc. Currently, grid managers are the people anticipating these energy demands.
+Throughout the day, Energy consumption in a city varies. For example 3AM energy demands are very different then 6PM energy demands. Variables for dictating the energy usage for a given time could be the time of day, temperature (if it’s colder everyone will be blasting heaters), holiday (more people will be home), time of the year (summer, fall, winter) etc. Currently, grid managers are the people anticipating these energy demands.
 
 ## Solution:
 You can think of energy demands being similar to a stock price, with the value changing constantly throughout the day. The only difference is that energy is a-lot more predictable and less volatile than a stock. Similar to how the largest hedge funds are now using AI to improve operations and maximize profits, we want to use Neural Networks to assist cities in optimizing Energy operations. With a more efficient energy usage predictor, we can reduce costs throughout the whole process and also reduce Environmental Issues that come as a by-product of creating energy.
